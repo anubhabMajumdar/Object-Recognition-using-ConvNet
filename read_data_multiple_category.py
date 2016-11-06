@@ -1,4 +1,5 @@
-import read_data as rd
+import read_data2 as rd
+import numpy as np
 
 def read_data_multiple_category(start_stop_list, category_list, size):
 	
