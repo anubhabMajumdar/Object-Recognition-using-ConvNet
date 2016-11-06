@@ -127,12 +127,13 @@ correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 sess.run(tf.initialize_all_variables())
 for i in range(20000):
-  if i%100 == 0:
-  	train_accuracy = accuracy.eval(feed_dict={
-        x:train_data, y_: train_label, keep_prob: 1.0})
-    print("step %d, training accuracy %g"%(i, train_accuracy))
+	if i%100 == 0:
+  		train_accuracy = accuracy.eval(feed_dict={
+        	x:train_data, y_: train_label, keep_prob: 1.0})
+    
+		print("step %d, training accuracy %g"%(i, train_accuracy))
 
-  train_step.run(feed_dict={x: train_data, y_: train_label, keep_prob: 0.5})
+	train_step.run(feed_dict={x: train_data, y_: train_label, keep_prob: 0.5})
   
 ############################# Test ############################################
 
