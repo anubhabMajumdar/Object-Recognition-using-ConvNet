@@ -1,7 +1,7 @@
 import os
 import glob
 from SimpleCV import *
-
+import time
 print __doc__
 
 def read_data(start, stop, category, size=64, g=True):
@@ -19,7 +19,6 @@ def read_data(start, stop, category, size=64, g=True):
 	imgs = list() #load up an image list
 	directory = os.path.join(path, extension)
 	files = glob.glob(directory)
-
 	out = []
 
 	for file in files[start:stop+1]:
@@ -39,5 +38,6 @@ def read_data(start, stop, category, size=64, g=True):
 
 
 # Use case
-#out = read_data(0, 9)
-
+#out = read_data(0, 10, "078.fried-egg", 64, False)
+#out[0].show()
+#time.sleep(1)
