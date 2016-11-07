@@ -2,18 +2,11 @@ import tensorflow as tf
 import read_data_multiple_category as read_data
 import time
 import numpy as np
-import random
 
 CATEGORIES = ["003.backpack", "012.binoculars", "062.eiffel-tower", "078.fried-egg"]
 START_STOP_LIST = [[1, 131], [1, 196], [1, 63], [1, 70]]
 START_STOP_LIST_TEST = [[132, 151], [197, 216], [64, 83], [71, 90]]
-SIZE = 28
-TOTAL_TRAIN = 0
-
-for i in START_STOP_LIST:
-	TOTAL_TRAIN = TOTAL_TRAIN + (i[1] - i[0] + 1)
-
-TRAIN_INDICES = range(TOTAL_TRAIN)
+SIZE = 64
 
 ################################### Load data #######################################
 
@@ -51,7 +44,7 @@ test_label = np.asarray(test_label)
 #print train_data.shape
 #print train_label.shape
 
-print train_data
+#print train_data
 
 print "Finished reading data"
 print "Training set size =", len(train_data)
@@ -93,10 +86,10 @@ def max_pool(x, size=2, stride=2):
 W_conv1 = weight_variable([5, 5, 1, 32])	# computing 32 features (shared weights)
 b_conv1 = bias_variable([32])	# 32 shared bias for 32 features
 
-x_image = tf.reshape(x, [-1,28,28,1])
+x_image = tf.reshape(x, [-1,SIZE,SIZE,1])
 
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-h_pool1 = max_pool(h_conv1)
+h_pool1 = max_pool(h_conv1)	#32*32*32
 
 ################################ 2nd Convolution Layer #################################
 
@@ -133,16 +126,14 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 sess.run(tf.initialize_all_variables())
-for i in range(10000):
+for i in range(20000):
 	if i%100 == 0:
   		train_accuracy = accuracy.eval(feed_dict={
         	x:train_data, y_: train_label, keep_prob: 1.0})
     
 		print("step %d, training accuracy %g"%(i, train_accuracy))
-	
-	random.shuffle(TRAIN_INDICES)
-	for j in range(0, len(TRAIN_INDICES), 2):	
-		train_step.run(feed_dict={x: train_data[j:j+1], y_: train_label[j:j+1], keep_prob: 0.5})
+
+	train_step.run(feed_dict={x: train_data, y_: train_label, keep_prob: 0.5})
   
 ############################# Test ############################################
 
