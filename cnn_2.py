@@ -2,11 +2,19 @@ import tensorflow as tf
 import read_data_multiple_category as read_data
 import time
 import numpy as np
+import random
 
 CATEGORIES = ["003.backpack", "012.binoculars", "062.eiffel-tower", "078.fried-egg"]
 START_STOP_LIST = [[1, 131], [1, 196], [1, 63], [1, 70]]
 START_STOP_LIST_TEST = [[132, 151], [197, 216], [64, 83], [71, 90]]
 SIZE = 64
+TOTAL_TRAIN = 0
+BATCH = 23
+
+for i in START_STOP_LIST:
+	TOTAL_TRAIN = TOTAL_TRAIN + (i[1] - i[0] + 1)
+
+TRAIN_INDICES = range(TOTAL_TRAIN)
 
 ################################### Load data #######################################
 
@@ -44,7 +52,7 @@ test_label = np.asarray(test_label)
 #print train_data.shape
 #print train_label.shape
 
-#print train_data
+print train_data
 
 print "Finished reading data"
 print "Training set size =", len(train_data)
@@ -58,7 +66,7 @@ sess = tf.InteractiveSession()
 
 ########################### Placeholder for inp/out ######################################
 
-x = tf.placeholder(tf.float32, shape=[None, 784])	# 28x28 image size
+x = tf.placeholder(tf.float32, shape=[None, SIZE*SIZE])	# 28x28 image size
 y_ = tf.placeholder(tf.float32, shape=[None, 4])	# 4 output class
 
 ################################### Weights ######################################
@@ -89,7 +97,7 @@ b_conv1 = bias_variable([32])	# 32 shared bias for 32 features
 x_image = tf.reshape(x, [-1,SIZE,SIZE,1])
 
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
-h_pool1 = max_pool(h_conv1)	#32*32*32
+h_pool1 = max_pool(h_conv1)
 
 ################################ 2nd Convolution Layer #################################
 
@@ -99,12 +107,20 @@ b_conv2 = bias_variable([64])
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
 h_pool2 = max_pool(h_conv2)
 
+################################ 3rd Convolution Layer #################################
+
+W_conv3 = weight_variable([5, 5, 64, 128])	# 64 features in this layer
+b_conv3 = bias_variable([128])
+
+h_conv3 = tf.nn.relu(conv2d(h_pool2, W_conv3) + b_conv3)
+h_pool3 = max_pool(h_conv3)
+
 ################################ Transforming to 1d Layer #################################
 
-W_fc1 = weight_variable([7 * 7 * 64, 1024])
+W_fc1 = weight_variable([8 * 8 * 128, 1024])
 b_fc1 = bias_variable([1024])
 
-h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
+h_pool2_flat = tf.reshape(h_pool3, [-1, 8*8*128])
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 ############################# Dropout ############################################
@@ -126,14 +142,16 @@ train_step = tf.train.AdamOptimizer(1e-4).minimize(cross_entropy)
 correct_prediction = tf.equal(tf.argmax(y_conv,1), tf.argmax(y_,1))
 accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 sess.run(tf.initialize_all_variables())
-for i in range(20000):
+for i in range(10000):
 	if i%100 == 0:
   		train_accuracy = accuracy.eval(feed_dict={
         	x:train_data, y_: train_label, keep_prob: 1.0})
     
 		print("step %d, training accuracy %g"%(i, train_accuracy))
-
-	train_step.run(feed_dict={x: train_data, y_: train_label, keep_prob: 0.5})
+	
+	random.shuffle(TRAIN_INDICES)
+	for j in range(0, len(TRAIN_INDICES), BATCH):	
+		train_step.run(feed_dict={x: train_data[j:j+BATCH-1], y_: train_label[j:j+BATCH-1], keep_prob: 0.5})
   
 ############################# Test ############################################
 
