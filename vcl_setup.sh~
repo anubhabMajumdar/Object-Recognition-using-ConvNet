@@ -6,4 +6,5 @@ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorf
 sudo pip install --upgrade $TF_BINARY_URL
 pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 sudo apt-get install python-matplotlib
-
+cd Desktop
+git clone https://github.ncsu.edu/amajumd/Object-recognition
