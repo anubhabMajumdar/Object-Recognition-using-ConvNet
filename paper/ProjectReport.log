@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  8 NOV 2016 11:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.8.17)  8 NOV 2016 13:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -334,7 +334,7 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 41.
 
-<learning_algorithm_basic.png, id=49, 696.6025pt x 413.545pt>
+<learning_algorithm_basic.png, id=53, 696.6025pt x 413.545pt>
 File: learning_algorithm_basic.png Graphic file (type png)
 
 <use learning_algorithm_basic.png>
@@ -350,132 +350,134 @@ LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10> not available
  [1
 
 {/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./learn
-ing_algorithm_basic.png>] <003_0001.jpg, id=62, 376.40625pt x 501.875pt>
+ing_algorithm_basic.png>] <003_0001.jpg, id=66, 376.40625pt x 501.875pt>
 File: 003_0001.jpg Graphic file (type jpg)
  <use 003_0001.jpg>
 Package pdftex.def Info: 003_0001.jpg used on input line 80.
 (pdftex.def)             Requested size: 18.82141pt x 25.09521pt.
 
-<003_0002.jpg, id=63, 222.8325pt x 325.215pt>
+<003_0002.jpg, id=67, 222.8325pt x 325.215pt>
 File: 003_0002.jpg Graphic file (type jpg)
  <use 003_0002.jpg>
 Package pdftex.def Info: 003_0002.jpg used on input line 81.
 (pdftex.def)             Requested size: 11.14227pt x 16.26169pt.
 
-<003_0003.jpg, id=64, 219.82124pt x 268.00125pt>
+<003_0003.jpg, id=68, 219.82124pt x 268.00125pt>
 File: 003_0003.jpg Graphic file (type jpg)
  <use 003_0003.jpg>
 Package pdftex.def Info: 003_0003.jpg used on input line 82.
 (pdftex.def)             Requested size: 10.9917pt x 13.40083pt.
 
-<003_0004.jpg, id=65, 270.00874pt x 351.3125pt>
+<003_0004.jpg, id=69, 270.00874pt x 351.3125pt>
 File: 003_0004.jpg Graphic file (type jpg)
  <use 003_0004.jpg>
 Package pdftex.def Info: 003_0004.jpg used on input line 83.
 (pdftex.def)             Requested size: 13.50122pt x 17.56665pt.
 
-<012_0001.jpg, id=66, 642.4pt x 453.695pt>
+<012_0001.jpg, id=70, 642.4pt x 453.695pt>
 File: 012_0001.jpg Graphic file (type jpg)
  <use 012_0001.jpg>
 Package pdftex.def Info: 012_0001.jpg used on input line 85.
 (pdftex.def)             Requested size: 32.12187pt x 22.68607pt.
 
-<012_0002.jpg, id=67, 642.4pt x 481.8pt>
+<012_0002.jpg, id=71, 642.4pt x 481.8pt>
 File: 012_0002.jpg Graphic file (type jpg)
  <use 012_0002.jpg>
 Package pdftex.def Info: 012_0002.jpg used on input line 86.
 (pdftex.def)             Requested size: 32.12187pt x 24.0914pt.
 
-<012_0003.jpg, id=68, 284.06125pt x 284.06125pt>
+<012_0003.jpg, id=72, 284.06125pt x 284.06125pt>
 File: 012_0003.jpg Graphic file (type jpg)
  <use 012_0003.jpg>
 Package pdftex.def Info: 012_0003.jpg used on input line 87.
 (pdftex.def)             Requested size: 14.20389pt x 14.20389pt.
 
-<012_0004.jpg, id=69, 216.81pt x 157.58875pt>
+<012_0004.jpg, id=73, 216.81pt x 157.58875pt>
 File: 012_0004.jpg Graphic file (type jpg)
  <use 012_0004.jpg>
 Package pdftex.def Info: 012_0004.jpg used on input line 88.
 (pdftex.def)             Requested size: 10.84113pt x 7.8799pt.
 
-<062_0001.jpg, id=70, 552.0625pt x 393.47pt>
+<062_0001.jpg, id=74, 552.0625pt x 393.47pt>
 File: 062_0001.jpg Graphic file (type jpg)
  <use 062_0001.jpg>
 Package pdftex.def Info: 062_0001.jpg used on input line 90.
 (pdftex.def)             Requested size: 27.60474pt x 19.67464pt.
 
-<062_0002.jpg, id=71, 451.6875pt x 602.25pt>
+<062_0002.jpg, id=75, 451.6875pt x 602.25pt>
 File: 062_0002.jpg Graphic file (type jpg)
  <use 062_0002.jpg>
 Package pdftex.def Info: 062_0002.jpg used on input line 91.
 (pdftex.def)             Requested size: 22.5857pt x 30.11426pt.
 
-<062_0003.jpg, id=72, 250.9375pt x 276.03125pt>
+<062_0003.jpg, id=76, 250.9375pt x 276.03125pt>
 File: 062_0003.jpg Graphic file (type jpg)
  <use 062_0003.jpg>
 Package pdftex.def Info: 062_0003.jpg used on input line 92.
 (pdftex.def)             Requested size: 12.5476pt x 13.80237pt.
 
-<062_0004.jpg, id=73, 142.28156pt x 302.63063pt>
+<062_0004.jpg, id=77, 142.28156pt x 302.63063pt>
 File: 062_0004.jpg Graphic file (type jpg)
  <use 062_0004.jpg>
 Package pdftex.def Info: 062_0004.jpg used on input line 93.
 (pdftex.def)             Requested size: 7.11449pt x 15.13242pt.
 
-<078_0001.jpg, id=74, 200.75pt x 315.1775pt>
+<078_0001.jpg, id=78, 200.75pt x 315.1775pt>
 File: 078_0001.jpg Graphic file (type jpg)
  <use 078_0001.jpg>
 Package pdftex.def Info: 078_0001.jpg used on input line 95.
 (pdftex.def)             Requested size: 10.03809pt x 15.7598pt.
 
-<078_0002.jpg, id=75, 180.675pt x 120.6909pt>
+<078_0002.jpg, id=79, 180.675pt x 120.6909pt>
 File: 078_0002.jpg Graphic file (type jpg)
  <use 078_0002.jpg>
 Package pdftex.def Info: 078_0002.jpg used on input line 96.
 (pdftex.def)             Requested size: 9.03427pt x 6.0349pt.
 
-<078_0003.jpg, id=76, 552.0625pt x 544.0325pt>
+<078_0003.jpg, id=80, 552.0625pt x 544.0325pt>
 File: 078_0003.jpg Graphic file (type jpg)
  <use 078_0003.jpg>
 Package pdftex.def Info: 078_0003.jpg used on input line 97.
 (pdftex.def)             Requested size: 27.60474pt x 27.20322pt.
 
-<078_0004.jpg, id=77, 542.025pt x 361.35pt>
+<078_0004.jpg, id=81, 542.025pt x 361.35pt>
 File: 078_0004.jpg Graphic file (type jpg)
  <use 078_0004.jpg>
 Package pdftex.def Info: 078_0004.jpg used on input line 98.
 (pdftex.def)             Requested size: 27.10283pt x 18.06856pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 152.
  [2 <./003_0001.jpg> <./003_0002.jpg> <./003_0003.jpg> <./003_0004.jpg> <./012_
 0001.jpg> <./012_0002.jpg> <./012_0003.jpg> <./012_0004.jpg> <./062_0001.jpg> <
 ./062_0002.jpg> <./062_0003.jpg> <./062_0004.jpg> <./078_0001.jpg> <./078_0002.
 jpg> <./078_0003.jpg> <./078_0004.jpg>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 152.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 217.
+ [3]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 217.
  (./ProjectReport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 152.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 152.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 217.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 217.
 Package rerunfilecheck Info: File `ProjectReport.out' has not changed.
-(rerunfilecheck)             Checksum: B5B7C643133BE683C05A3D0490F457E1;555.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 152.
+(rerunfilecheck)             Checksum: 5E4B004318F43506595BA0B4F5B50EEF;617.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 217.
  ) 
 Here is how much of TeX's memory you used:
- 7029 strings out of 493014
- 107559 string characters out of 6133351
- 197304 words of memory out of 5000000
- 10462 multiletter control sequences out of 15000+600000
- 13867 words of font info for 29 fonts, out of 8000000 for 9000
+ 7037 strings out of 493014
+ 107649 string characters out of 6133351
+ 198304 words of memory out of 5000000
+ 10466 multiletter control sequences out of 15000+600000
+ 14911 words of font info for 32 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,14n,42p,656b,402s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,14n,42p,718b,436s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/te
-xlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/20
-16/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-d
-ist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/
-type1/urw/times/utmri8a.pfb>
-Output written on ProjectReport.pdf (2 pages, 481307 bytes).
+xlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/tex
+live/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/201
+6/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-di
+st/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/t
+ype1/urw/times/utmri8a.pfb>
+Output written on ProjectReport.pdf (3 pages, 493265 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
- 103 compressed objects within 2 object streams
- 35 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 PDF objects out of 1000 (max. 8388607)
+ 116 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 174 words of extra memory for PDF output out of 10000 (max. 10000000)
 

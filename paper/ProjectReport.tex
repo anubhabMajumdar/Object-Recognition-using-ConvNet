@@ -103,6 +103,9 @@ Sample of some images from the dataset are shown in Fig.\ref{Fig:sample_dataset}
 \label{Fig:sample_dataset}
 \end{figure}
 
+\subsection{Baseline}
+
+
 \subsection{KNN}
 % write here
 
@@ -110,7 +113,69 @@ Sample of some images from the dataset are shown in Fig.\ref{Fig:sample_dataset}
 % write here
 
 
-\subsection{Convolution Neural Network}
+\subsection{Convolutional Neural Network}
+Fully connected neural networks (NN) are not the most suitable architecture to classify images because such a network architecture does not take into account the spatial structure of the images. The spatial location information of individual pixels are lost as soon as we transform it's 2D structure to one dimension to input into the neural network architecture. To solve this problem, LeCunn et. al. came up with convolutional neural network (CNN). CNN is a deep NN architecture that retains the location information of training data and is well adapted to classify images. Also, since all layers of CNN are not completely connected, we can train them faster than a fully connected architecture. 
+\par However, building and training a deep CNN architecture (CovNet) is not easy because:
+
+\begin{itemize}
+\item
+There is no exact set of rules which determine how deep or how wide the network should be to produce good accuracy
+\item
+Small number of data samples per class in Caltech-256 dataset
+\item
+Huge computational cost of training a CovNet
+\end{itemize}
+
+There are 4 main aspects of CovNet that we need to determine:
+
+\begin{itemize}
+\item
+Training data 
+	\begin{itemize}
+		\item
+		How large the training set should be? Should the training set size be increased by augmenting the available images?
+		\item
+		What should be the resolution of each input image? 
+		\item
+		What should be the ideal batch size for training the network? 
+	\end{itemize}	
+
+\item
+Convolutional layers
+	\begin{itemize}
+		\item
+		What should be the depth of the network, i.e., how many convolutional layer should be present?
+		\item
+		What should be the width of the network, i.e., how many features should be present per convolutional layer?
+	\end{itemize}
+
+\item
+Fully connected layer
+	\begin{itemize}
+		\item 
+		What should be the size of the penultimate fully connected layer, i.e., how many neurons should it have?
+	\end{itemize}
+
+\item
+Prevent overfitting - CNN, like NN can easily overfit. How to prevent that? 
+\end{itemize} 
+
+Our focus in this paper is more on trying to understand how tweaking each of the above mentioned aspect affects the performance of CovNet, rather than to try everything to somehow achieve good accuracy.
+\par Since the number of samples per class is quite less, we decided to keep aside 20 samples from each class aside for test, and train our network with the remaining images. The batch size is kept 23 as there are 460 training images. We plan on staring with a simple 2 layer $\it{lean}$ model and tweak it's aspects in consecutive runs and determine the affects. The first network we trained has the following architecture:
+\begin{itemize}
+		\item 
+		Input image resolution - 28x28
+		\item
+		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
+		\item
+		Convolutional layer 2 - 64 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
+		\item
+		A fully connected layer with 1024 neurons with ReLU activation function.
+		\item
+		The output layer has 4 neurons denoting the 4 classes. The output is determined using softmax cross entropy function.
+				
+\end{itemize}
+
 
 
 \section{Experiments and Results}
@@ -123,7 +188,7 @@ Sample of some images from the dataset are shown in Fig.\ref{Fig:sample_dataset}
 % write here
 
 
-\subsection{Convolution Neural Network}
+\subsection{Convolutional Neural Network}
 
 
 
