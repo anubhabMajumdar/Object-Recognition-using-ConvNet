@@ -134,8 +134,8 @@ h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)	# prevent overfitting
 
 W_fc2 = weight_variable([1024, 4])	# 4 output class
 b_fc2 = bias_variable([4])
-
-y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
+with tf.device('/cpu:0'):
+	y_conv = tf.matmul(h_fc1_drop, W_fc2) + b_fc2
 
 ############################# Train ############################################
 
