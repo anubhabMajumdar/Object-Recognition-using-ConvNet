@@ -82,6 +82,16 @@ def bias_variable(shape):
   initial = tf.constant(0.1, shape=shape)
   return tf.Variable(initial)
 
+############################# stop train #######################################
+
+def stop_train_check(acc_list):
+	if len(acc_list)<3:
+		return True	
+	elif (acc_list[-1] > acc_list[-2]) or (acc_list[-1] > acc_list[-3]):
+		return True
+	else:
+		return False 
+
 ################################### Convolution Layer ######################################
 
 def conv2d(x, W, s=1):	#	s -> strides
@@ -185,13 +195,4 @@ print "Max Test accuracy", max(test_acc)
 print "Training accuracy", train_acc[test_acc.index(max(test_acc))]
 
 
-############################# stop train #######################################
-
-def stop_train_check(acc_list):
-	if len(acc_list)<3:
-		return True	
-	elif (acc_list[-1] > acc_list[-2]) or (acc_list[-1] > acc_list[-3]):
-		return True
-	else:
-		return False 
 
