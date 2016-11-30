@@ -119,7 +119,33 @@ A nearest-neighbor classification object, where both distance metric ("nearest")
 
 
 \subsection{Convolutional Neural Network}
-Fully connected neural networks (NN) are not the most suitable architecture to classify images because such a network architecture does not take into account the spatial structure of the images. The spatial location information of individual pixels are lost as soon as we transform it's 2D structure to one dimension to input into the neural network architecture. To solve this problem, LeCunn et. al. came up with convolutional neural network (CNN). CNN is a deep NN architecture that retains the location information of training data and is well adapted to classify images. Also, since all layers of CNN are not completely connected, we can train them faster than a fully connected architecture. 
+Fully connected neural networks (NN) are not the most suitable architecture to classify images because such a network architecture does not take into account the spatial structure of the images. The spatial location information of individual pixels are lost as soon as we transform it's 2D structure into one dimension to input into the neural network architecture. To solve this problem, LeCunn et. al. came up with convolutional neural network (CNN) in their pioneering work LeNet-5 \cite{LeNet-5_paper}.
+\par CNN is a type of feed forward artificial neural network that retains the location information of training data and is well adapted to classify images. The connectivity pattern between it's neurons is inspired by the organization of the animal visual cortex. A typical CNN architecture is shown in Fig.\ref{fig:typical_cnn}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{typical_cnn.png}
+\caption{A typical CNN architecture}
+\label{fig:typical_cnn}
+\end{figure}
+
+CNN has 3 components:
+
+\begin{itemize}
+\item
+Convolutional layer - These layers uses local receptive field and a set of filters to convolve across the width and height of the input volume, computing the dot product between the entries of the filter and the input and producing a 2-dimensional activation map of that filter. As a result, the network learns filters that activate when they see some specific type of feature at some spatial position in the input.
+\item
+Pooling layer - These layer immediately follow convolutional layer. What the pooling layers do is simplify the information in the output from the convolutional layer. In our experiments we have used max-pooling.
+\item
+Fully connected layer - These layers are identical to hidden layers of an ANN. They connect the last pooling layer with the output layer. The last layer produces the classification results.
+\end{itemize}
+
+
+
+
+
+
+
 \par However, building and training a deep CNN architecture (ConvNet) is not easy because:
 
 \begin{itemize}
@@ -158,46 +184,21 @@ Convolutional layers
 Fully connected layer
 	\begin{itemize}
 		\item 
-		What should be the size of the penultimate fully connected layer, i.e., how many neurons should it have?
+		What should be the depth of the fully connected layer?
+		\item
+		What should be the size of each fully connected layer, i.e. how many neurons should be present in each fully connected layer?
 	\end{itemize}
 
 \item
-Prevent overfitting - CNN, like NN can easily overfit. How to prevent that? 
+Prevent overfitting - CNN, like artificial NN can easily overfit. How to prevent that? 
 \end{itemize} 
 
 Our focus in this paper is more on trying to understand how tweaking each of the above mentioned aspect affects the performance of ConvNet, rather than to try everything to somehow achieve good accuracy.
-\par Since the number of samples per class is quite less, we decided to keep aside 20 samples from each class aside for test, and train our network with the remaining images. The batch size is kept 23 as there are 460 training images. We plan on staring with a simple 2 layer $\it{lean}$ model and tweak it's aspects in consecutive experiments and determine the affects. Till now we have trained 2 architectures.
-The first network we trained has the following architecture:
-\begin{itemize}
-		\item 
-		Input image resolution - 28x28
-		\item
-		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is rectified linear units (ReLU).
-		\item
-		Convolutional layer 2 - 64 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
-		\item
-		A fully connected layer with 64 neurons with ReLU activation function.
-		\item
-		The output layer has 4 neurons denoting the 4 classes. The output is determined using softmax cross entropy function.
-				
-\end{itemize}
+\par Since the number of samples per class is quite less, we have increased our training set using image augmentation. We kept 80 images aside for testing. The training set contains 3680 images - 460 are unique images and rest are augmented using rotation of image and adding Gaussian blur.  
 
-The second network we trained has the following architecture:
-\begin{itemize}
-		\item 
-		Input image resolution - 28x28
-		\item
-		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is rectified linear units (ReLU).
-		\item
-		Convolutional layer 2 - 64 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
-		\item
-		A fully connected layer with 1024 neurons with ReLU activation function.
-		\item
-		The output layer has 4 neurons denoting the 4 classes. The output is determined using softmax cross entropy function.
-				
-\end{itemize}
+We have used dropout, a regularization technique, to prevent overfitting. It is proposed by Hinton et. al. in their seminal paper \cite{dropout_paper}. The term "dropout" refers to dropping out units (both hidden and visible) in a neural network to prevent overfitting.
 
-The networks are created with python and tensorflow.
+The networks are created with python and tensorflow. The codebase is available in GitHub \cite{cnn_github}.
 
 \section{Experimental Results}
 
@@ -332,6 +333,20 @@ Anil K. Jain,Farshid Farrokhnia
 \textit{Unsupervised Texture Segmentation Using Gabor
 Filters}. 
 
+\bibitem{LeNet-5_paper}
+Yann Lecun, Leon Bottou, Yoshua Bengio and Patrick Haffner \\
+\textit{Gradient-Based learning applied to document recognition}
+
+\bibitem{dropout_paper}
+Nitish Srivastava,
+Geoffrey Hinton,
+Alex Krizhevsky,
+Ilya Sutskever and
+Ruslan Salakhutdinov 
+\textit{Dropout: A Simple Way to Prevent Neural Networks from Overfitting}
+
+\bibitem{cnn_github}
+\textit{https://github.com/anubhabMajumdar/Object-Recognition-using-ConvNet}
 
 \end{thebibliography}
 
