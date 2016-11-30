@@ -4,8 +4,10 @@
 \usepackage{url}
 \usepackage{graphicx}
 \usepackage{subfig}
+\usepackage{tabularx}
 
-\title{Object Recognition using CALTECH 256 Dataset}
+% \title{Object Recognition using CALTECH 256 Dataset}
+\title{Object Recognition : An Exploration }
 
 
 \author{
@@ -204,7 +206,7 @@ The networks are created with python and tensorflow. The codebase is available i
 
 \subsection{Baseline}
 
-\centering
+% \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
 &
@@ -242,7 +244,7 @@ Fried Egg &
 
 \subsection{KNN}
 
-\centering
+% \centering
 \begin{tabular}{|c|c|c|c|c|}
 \hline 
 &
@@ -280,28 +282,74 @@ Fried Egg &
 
 \subsection{Convolutional Neural Network}
 
-\centering
-\begin{tabular}{|c|c|c|}
-\hline 
-&
-Architecture 1 &
-Architecture 2 \\
-\hline 
-Training Set Accuracy &
-45.43\% &
-79.78\% \\
-\hline 
-Test Set Accuracy &
-26.25\% &
-27.5\% \\
-\hline 
-\end{tabular}
 
+\begin{table}[htbp]
+    \begin{center}
+    \begin{tabularx}{1.2\textwidth}{|c|X|X|X|X|X|X|X|X|}
+        \hline
+        Index & Input image size & Conv layer 1 & Conv layer 2 & Conv layer 3 & Fully connected layer 1 & Fully connected layer 2 & Train accuracy & Test accuracy \\
+        \hline 
+        CNN 1 & 28x28x1 & 14x14x32 & 7x7x64 & NA & 64x1 & NA & 45.43\% & 26.25\% \\
+        \hline
+        CNN 2 & 28x28x1 & 14x14x32 & 7x7x64 & NA & 1024x1 & NA & 79.78\% & 27.50\% \\
+        \hline
+        CNN 3 & 64x64x1 & 32x32x32 & 16x16x64 & 8x8x128 & 1024x1 & NA & 91.00\% & 42.50\% \\
+        \hline
+        CNN 4 & 28x28x1 & 14x14x64 & 7x7x128 & NA & 1024x1 & 1024x1 & 96.82\% & 69.69\% \\
+        \hline
+        CNN 5 & 28x28x1 & 14x14x128 & 7x7x256 & NA & 1024x1 & 1024x1 & 96.54\% & 67.81\% \\
+        \hline
+    \end{tabularx}
+    \caption{Results of 5 different CNN architectures}
+    \end{center}
+\end{table}
+
+\underline{Some interesting observations from the result above are:}
+\begin{itemize}
+\item
+A very shallow network cannot capture enough information about the different categories of images to provide good testing accuracy (CNN 1 and CNN 2)
+\item
+Increasing the depth of convolution layer results better testing accuracy (CNN 3). This can be attributed to the fact that more complicated features are captured by the convolutional layers, which describes the objects more accurately
+\item
+Increasing depth of fully connected layers, even with less convolutional layers, boosts accuracy by a large percentage (CNN 4). We believe this is because more hidden layers learn hierarchical representations of the input data and can better generalize to unseen data as well
+\item
+We do not achieve better accuracy by just making the network wide and not deep (CNN 5). The reason, we believe, is even though there are more features, they are not much different from the existing ones to help distinguish the categories any better than CNN 4
+\end{itemize}
 
 
 \section{Conclusion}
 
-We are moving from simpler models to complex models and trying to compare results. We should expect a better accuracy percent as we move across them. Currently we have tried KNN and started on deep neural network. We plan to train SVM and a fully connected neural network also to have a better comparison during final presentation.
+The project was an exploration across various approaches to object recognition across time. We started with simpler model like KNN and moved to extremely complex models like CNN and everything in between. Fig.\ref{fig:results_comparison} shows the comparison of the various experimental results we captured in this project.
+
+\begin{figure}[h]
+\centering
+\includegraphics[scale=0.3]{results_comparison2.png}
+\caption{A comparison of experimental results}
+\label{fig:results_comparison}
+\end{figure}
+
+\underline{The comparison of the results yield some very interesting points:}
+\begin{itemize}
+\item
+Neural networks trained with the raw image itself (i.e. without any feature engineering) produces much better results in terms of accuracy than algorithms with feature engineering.
+\item
+Feature engineering for large categories of object is fragile. There are lot of parameters that need to be decided to get good accuracy and there is no guarantee that introduction of a new category won't degrade the performance.
+\item
+One of the best advantage of deep convolutional neural network is the independence from feature engineering. This makes the approach more robust.
+\end{itemize}
+
+\underline{The take home point, for us, from doing this project are:}
+\begin{itemize}
+\item
+Handcrafted features for large variety of images is unreliable and fragile
+\item
+Featureless approach to computer vision problem with deep neural network yields better accuracy
+\item
+Modern computer vision research is moving towards featureless approach with deep ConvNet. 
+Ex: ImageNet and GoogLeNet
+\end{itemize}
+
+% In fact, during our research for different approaches for object recognition taken across time, we noticed the shift from complicated feature engineering based approach to a deep network based approach. Histogram of Gradients (HoG), SIFT, SURF and BRISK are some of the most complicated and powerful feature descriptors present and yet ImageNet and GoogLeNet have beat them significantly. These deep networks are used widely in search engines and voice recognition and they perform quite well in a robust manner. 
 
 
 \begin{thebibliography}{9}
