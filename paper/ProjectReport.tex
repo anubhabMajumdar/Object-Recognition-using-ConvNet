@@ -41,7 +41,7 @@ Shubham Munot \\
 \section{Introduction}
 Object recognition is a quintessential machine learning problem of modern times. It is difficult for machines to recognize a large variety of objects in different conditions of lighting, occlusion and skew. In recent years, this field has seen huge leaps with machines becoming adept at object recognition. In this project, we explore different approaches of tackling this problem
 
-\par We are using the CALTECH 256 dataset \href{http://www.vision.caltech.edu/Image_Datasets/Caltech256/}{(link)} for object recognition \cite{caltech_dataset_paper}. The dataset has 256 unique categories of images. The number of samples in each category varies from 80 to over 200. This dataset is quite a standard dataset in the field of object recognition and has been been used in important research papers like \cite{knn_svm_paper}. Our goal is to train a machine learning algorithm using 80\% of the data and test using the remaining 20\%. We experimented on a small subset (4-5 categories) of the dataset. 
+\par We are using the CALTECH 256 dataset \href{http://www.vision.caltech.edu/Image_Datasets/Caltech256/}{(link)} for object recognition \cite{caltech_dataset_paper}. The dataset has 256 unique categories of images. The number of samples in each category varies from 80 to over 200. This dataset is quite a standard dataset in the field of object recognition and has been been used in important research papers like \cite{knn_svm_paper}. We experimented on a small subset (4-5 categories) of the dataset. 
 
 \par The experiments have been implemented using student version of MATLAB and python/tensorflow. Some of the less computationally intensive models are trained on personal computers, while the deep networks are trained on VCL servers.
 
@@ -105,17 +105,22 @@ Sample of some images from the dataset are shown in Fig.\ref{Fig:sample_dataset}
 
 \subsection{Baseline}
 
+For determining baseline, we have used the simple technique of majority class. As seen from above, among the 4 different classes we are experimenting with, binocular has the largest number of sample images. Therefore, given any image from the dataset, the probability of that image having a binocular is highest among the 4 classes. And this is what we use as baseline method.
 
 \subsection{KNN}
-% write here
 
-\subsection{SVM}
-% write here
+Gabor filters are good models of how humans distinguish texture, and are therefore a useful model to use when designing algorithms to recognize texture. This example uses the basic approach described in (A. K. Jain and F. Farrokhnia, "Unsupervised Texture Segmentation Using Gabor Filters",1991) to perform texture segmentation.\cite{Mathworks}
+
+Design an array of Gabor Filters which are tuned to different frequencies and orientations. The set of frequencies and orientations is designed to localize different, roughly orthogonal, subsets of frequency and orientation information in the input image. Regularly sample orientations between [0,150] degrees in steps of 30 degrees. Sample wavelength in increasing powers of two starting from 4/sqrt(2) up to the hypotenuse length of the input image. These combinations of frequency and orientation are taken from [Jain,1991] cited in the introduction.\cite{Mathworks}
+
+Extract gabor magnitude features from source image. When working with Gabor filters, it is common to work with the magnitude response of each filter. Gabor magnitude response is also sometimes referred to as "Gabor Energy". Each MxN Gabor magnitude output image in gabormag(:,:,ind) is the output of the corresponding gabor filter g(ind).\cite{Mathworks}
+
+A nearest-neighbor classification object, where both distance metric ("nearest") and number of neighbors can be altered. The object classifies new observations using the predict method. The object contains the data used for training, so can compute resubstitution predictions.
 
 
 \subsection{Convolutional Neural Network}
 Fully connected neural networks (NN) are not the most suitable architecture to classify images because such a network architecture does not take into account the spatial structure of the images. The spatial location information of individual pixels are lost as soon as we transform it's 2D structure to one dimension to input into the neural network architecture. To solve this problem, LeCunn et. al. came up with convolutional neural network (CNN). CNN is a deep NN architecture that retains the location information of training data and is well adapted to classify images. Also, since all layers of CNN are not completely connected, we can train them faster than a fully connected architecture. 
-\par However, building and training a deep CNN architecture (CovNet) is not easy because:
+\par However, building and training a deep CNN architecture (ConvNet) is not easy because:
 
 \begin{itemize}
 \item
@@ -123,10 +128,10 @@ There is no exact set of rules which determine how deep or how wide the network 
 \item
 Small number of data samples per class in Caltech-256 dataset
 \item
-Huge computational cost of training a CovNet
+Huge computational cost of training a ConvNet
 \end{itemize}
 
-There are 4 main aspects of CovNet that we need to determine:
+There are 4 main aspects of ConvNet that we need to determine:
 
 \begin{itemize}
 \item
@@ -160,13 +165,29 @@ Fully connected layer
 Prevent overfitting - CNN, like NN can easily overfit. How to prevent that? 
 \end{itemize} 
 
-Our focus in this paper is more on trying to understand how tweaking each of the above mentioned aspect affects the performance of CovNet, rather than to try everything to somehow achieve good accuracy.
-\par Since the number of samples per class is quite less, we decided to keep aside 20 samples from each class aside for test, and train our network with the remaining images. The batch size is kept 23 as there are 460 training images. We plan on staring with a simple 2 layer $\it{lean}$ model and tweak it's aspects in consecutive runs and determine the affects. The first network we trained has the following architecture:
+Our focus in this paper is more on trying to understand how tweaking each of the above mentioned aspect affects the performance of ConvNet, rather than to try everything to somehow achieve good accuracy.
+\par Since the number of samples per class is quite less, we decided to keep aside 20 samples from each class aside for test, and train our network with the remaining images. The batch size is kept 23 as there are 460 training images. We plan on staring with a simple 2 layer $\it{lean}$ model and tweak it's aspects in consecutive experiments and determine the affects. Till now we have trained 2 architectures.
+The first network we trained has the following architecture:
 \begin{itemize}
 		\item 
 		Input image resolution - 28x28
 		\item
-		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
+		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is rectified linear units (ReLU).
+		\item
+		Convolutional layer 2 - 64 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
+		\item
+		A fully connected layer with 64 neurons with ReLU activation function.
+		\item
+		The output layer has 4 neurons denoting the 4 classes. The output is determined using softmax cross entropy function.
+				
+\end{itemize}
+
+The second network we trained has the following architecture:
+\begin{itemize}
+		\item 
+		Input image resolution - 28x28
+		\item
+		Convolutional layer 1 - 32 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is rectified linear units (ReLU).
 		\item
 		Convolutional layer 2 - 64 features extracted using 5x5 local receptive field with max pooling applied to 2x2 regions. Activation function used is ReLU.
 		\item
@@ -176,25 +197,110 @@ Our focus in this paper is more on trying to understand how tweaking each of the
 				
 \end{itemize}
 
+The networks are created with python and tensorflow.
 
+\section{Experimental Results}
 
-\section{Experiments and Results}
+\subsection{Baseline}
+
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+&
+Backpack &
+Binocular &
+Eiffel Tower &
+Fried Egg \\
+\hline 
+Backpack &
+0 &
+20 &
+0 &
+0 \\
+\hline 
+Binocular &
+0 &
+20 &
+0 &
+0 \\
+\hline 
+Eiffel Tower &
+0 &
+20 &
+0 &
+0 \\
+\hline
+Fried Egg &
+0 &
+20 &
+0 &
+0 \\
+\hline
+\end{tabular}
+
 
 \subsection{KNN}
-% write here
 
-
-\subsection{SVM}
-% write here
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline 
+&
+Backpack &
+Binocular &
+Eiffel Tower &
+Fried Egg \\
+\hline 
+Backpack &
+12 &
+5 &
+0 &
+3 \\
+\hline 
+Binocular &
+3 &
+17 &
+0 &
+0 \\
+\hline 
+Eiffel Tower &
+3 &
+5 &
+9 &
+3 \\
+\hline
+Fried Egg &
+3 &
+8 &
+1 &
+8 \\
+\hline
+\end{tabular}
 
 
 \subsection{Convolutional Neural Network}
+
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+&
+Architecture 1 &
+Architecture 2 \\
+\hline 
+Training Set Accuracy &
+45.43\% &
+79.78\% \\
+\hline 
+Test Set Accuracy &
+26.25\% &
+27.5\% \\
+\hline 
+\end{tabular}
 
 
 
 \section{Conclusion}
 
-
+We are moving from simpler models to complex models and trying to compare results. We should expect a better accuracy percent as we move across them. Currently we have tried KNN and started on deep neural network. We plan to train SVM and a fully connected neural network also to have a better comparison during final presentation.
 
 
 \begin{thebibliography}{9}
@@ -207,11 +313,26 @@ Greg Griffin, Alex Holub and Pietro Perona. \\
 Hao Zhang, Alexander C. Berg, Michael Maire and Jitendra Malik \\
 \textit{SVM-KNN: Discriminative Nearest Neighbor Classification for Visual Category
 Recognition}.
-
  
 \bibitem{knuthwebsite} 
 Knuth: Computers and Typesetting,
 \\\texttt{http://www-cs-faculty.stanford.edu/\~{}uno/abcde.html}
+
+\bibitem{Mathworks} 
+Texture Segmentation using Gabor Filters
+\\\texttt{https://www.mathworks.com/help/images/texture-segmentation-using-gabor-filters.html}
+
+\bibitem{Gabor_Paper} 
+Simona E.Grigorescu, Nicolai Petkov, and Peter Kruizinga\\\
+\textit{Comparison of Texture Features based on Gabor Filters}. 
+
+\bibitem{Gabor_Paper_Jain} 
+Anil K. Jain,Farshid Farrokhnia
+\\
+\textit{Unsupervised Texture Segmentation Using Gabor
+Filters}. 
+
+
 \end{thebibliography}
 
 \end{document}
