@@ -62,7 +62,7 @@ def read_data(start, stop, category, size=64, g=True):
 				
 	        #grey.show()
 	        #time.sleep(1) #wait for 1 second
-		print len(out)
+
 	return out        
 
 

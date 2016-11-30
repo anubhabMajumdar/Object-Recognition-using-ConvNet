@@ -6,6 +6,7 @@ export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorf
 sudo pip install --upgrade $TF_BINARY_URL
 pip install --user numpy scipy matplotlib ipython jupyter pandas sympy nose
 sudo apt-get install python-matplotlib
+sudo apt-get install python-numpy python-scipy
 sudo dpkg -i cuda-repo-ubuntu1604_8.0.44-1_amd64.deb
 sudo apt-get update
 sudo apt-get install cuda
