@@ -1,7 +1,7 @@
 # Object-Recognition-using-ConvNet
 Object recognition using deep ConvNet and Caltch-256 dataset
 
-This project is my first foray in learning and implementating deep convolutional neural network using Tensorflow.
+This project is my first foray in learning and implementing deep convolutional neural network using Tensorflow.
 
 Files
 --------------------------
