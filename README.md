@@ -7,10 +7,10 @@ Need python 2.7
 
 Packages
 ========================
-TensorFlow
-Numpy
-Scipy
-Matplotlib
+1. TensorFlow
+2. Numpy
+3. Scipy
+4. Matplotlib
 
 Folder
 ========================
