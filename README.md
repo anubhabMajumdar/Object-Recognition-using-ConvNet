@@ -20,9 +20,10 @@ Files
 ========================
 vcl_setup.sh - Run it to setup tensorflow with GPU support and all important python packages in Ubuntu machine
 
-read_data2.py -> Reads images for given folder and range
+read_data2.py -> Reads images for given folder and range and augments them using ritation and gaussian blur.
 
 read_data_multiple_category.py -> Wrapper for reading images from multiple folders
 
-cnn_*.py -> Actual CNN network. Initial code is to read the images and create label matrix. Will separate this module out later. cnn_6.py has a provision of stopping the code when the training accuracy flatlines after certein number of iterations. 
+cnn_*.py -> Actual CNN network. Initial code is to read the images and create label matrix. Will separate this module out later. cnn_6.py has a provision of stopping the code when the training accuracy flatlines after certein number of iterations.Please use cnn_5.py or cnn_6.py.
 
+To test, just run cnn_6.py. 
